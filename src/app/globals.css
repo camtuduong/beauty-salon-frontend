@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -9,6 +10,15 @@
   --background: #d9d7d6;
   --foreground: #171717;
   --primary: #ff6f61;
+  --salon-primary: #17313e;
+  --salon-primary-hover: #0e212b;
+  --salon-secondary: #415e72;
+  --salon-heading: #35393c;
+  --salon-copy: #6b4f4f;
+  --salon-border: #eed6c4;
+  --salon-highlight: #bca0c7;
+  --salon-surface: #d8dde1;
+  --salon-tab-title: #17303e;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -43,8 +53,18 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-salon-primary: var(--salon-primary);
+  --color-salon-primary-hover: var(--salon-primary-hover);
+  --color-salon-secondary: var(--salon-secondary);
+  --color-salon-heading: var(--salon-heading);
+  --color-salon-copy: var(--salon-copy);
+  --color-salon-border: var(--salon-border);
+  --color-salon-highlight: var(--salon-highlight);
+  --color-salon-surface: var(--salon-surface);
+  --color-salon-tab-title: var(--salon-tab-title);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-intern: "Intern", sans-serif;
   --font-playfair: "Playfair Display", serif;
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);

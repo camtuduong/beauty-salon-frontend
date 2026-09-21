@@ -21,7 +21,7 @@ export const Tab = ({
 }: Props) => {
   return (
     <div className="flex h-70.25 w-100 flex-col items-start justify-center gap-4.75 rounded-[24px] bg-white px-8 py-6">
-      <p className="font-playfair text-[24px] font-semibold text-[#17303E]">
+      <p className="font-playfair text-salon-tab-title text-[24px] font-semibold">
         {testimonial}
       </p>
       <div className="flex items-start gap-4.75">

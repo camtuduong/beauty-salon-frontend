@@ -5,14 +5,14 @@ import { ArrowRight } from "@/src/components/Icons/ArrowRight";
 
 const STYLES = {
   section: "mx-18.75 mt-4 flex flex-col",
-  serviceButton: "cursor-pointer text-xl text-[#415E72]",
+  serviceButton: "text-salon-secondary cursor-pointer text-xl",
   navigationButton:
-    "flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#EED6C4] bg-[#415E72]",
-  arrowIcon: "size-4 text-[#EED6C4]",
+    "border-salon-border bg-salon-secondary flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border",
+  arrowIcon: "text-salon-border size-4",
   servicesContainer: "mt-5 flex justify-center space-x-4",
   cardsContainer: "flex items-center justify-center gap-8.75 p-4",
   button:
-    "flex w-fit cursor-pointer items-center justify-center gap-2 self-center bg-[#415E72]",
+    "bg-salon-secondary flex w-fit cursor-pointer items-center justify-center gap-2 self-center",
 };
 export const ListServicesSection = () => {
   const services = [
@@ -73,7 +73,7 @@ export const ListServicesSection = () => {
         </button>
       </div>
       <Button className={STYLES.button}>
-        More <ArrowRight className="text-[#EED6C4]" />
+        More <ArrowRight className="text-salon-border" />
       </Button>
     </section>
   );

@@ -25,7 +25,7 @@ export const Marquee = () => {
   ];
 
   return (
-    <div className="group relative h-full w-full overflow-hidden bg-[#17313E]/40 py-8">
+    <div className="group bg-salon-primary/40 relative h-full w-full overflow-hidden py-8">
       <div className="animate-marquee group-hover:paused flex w-max motion-reduce:animate-none">
         {[0, 1].map((copy) => (
           <div

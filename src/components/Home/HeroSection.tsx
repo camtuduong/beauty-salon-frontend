@@ -8,7 +8,7 @@ const STYLES = {
   containerText:
     "relative z-20 ml-20 flex h-full w-[40%] flex-col justify-center gap-5",
   buttonTransparent:
-    "flex items-center gap-2 border border-transparent bg-transparent font-semibold text-[#35393C] hover:border hover:border-[#17313E] hover:bg-transparent",
+    "text-salon-heading hover:border-salon-primary flex items-center gap-2 border border-transparent bg-transparent font-semibold hover:border hover:bg-transparent",
 };
 
 export const HeroSection = () => {
@@ -23,20 +23,20 @@ export const HeroSection = () => {
         />
       </div>
       <div className={STYLES.containerText}>
-        <p className="text-[12px] font-semibold text-[#BCA0C7]">
+        <p className="text-salon-highlight text-[12px] font-semibold">
           BEAUTY SALON • DUBAI
         </p>
-        <h2 className="font-playfair text-[44px] leading-14 tracking-[5%] text-[#6B4F4F]">
+        <h2 className="font-playfair text-salon-copy text-[44px] leading-14 tracking-[5%]">
           SOFT, ELEGANT BEAUTY CARE IN DUBAI.
         </h2>
-        <p className="text-[16px] font-extralight text-[#6B4F4F]">
+        <p className="text-salon-copy text-[16px] font-extralight">
           Natural Touch is a full-service beauty salon offering hair, nails,
           facials and spa treatments in a calm, welcoming space.
         </p>
         <div className="flex gap-3">
           <Button>Book an appointment</Button>
           <Button className={STYLES.buttonTransparent}>
-            View services <ArrowRight className="text-[#35393C]" />
+            View services <ArrowRight className="text-salon-heading" />
           </Button>
         </div>
       </div>

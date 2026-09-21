@@ -1,18 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/src/components/motion/SmothScroll";
 import { Header } from "@/src/components/layout/Header";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Footer } from "@/src/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,15 +11,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className="font-intern h-full antialiased">
       <body className="relative flex min-h-full flex-col overflow-x-hidden">
         <Header />
         <main className="flex-1">
           <SmoothScroll>{children}</SmoothScroll>
         </main>
+        <Footer />
       </body>
     </html>
   );

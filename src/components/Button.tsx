@@ -11,7 +11,7 @@ export const Button = ({ children, className, onClick }: Props) => {
     <button
       onClick={onClick}
       className={cn(
-        "cursor-pointer rounded-full border border-[#EED6C4] bg-[#17313E] px-4 py-2 font-semibold text-white transition-colors duration-300 hover:bg-[#0e212b]",
+        "border-salon-border bg-salon-primary hover:bg-salon-primary-hover cursor-pointer rounded-full border px-4 py-2 font-semibold text-white transition-colors duration-300",
         className,
       )}
     >
