@@ -1,15 +1,18 @@
+import { Button } from "@/src/components/Button";
 import { Card } from "@/src/components/Card";
 import { ArrowLeft } from "@/src/components/Icons/ArrowLeft";
 import { ArrowRight } from "@/src/components/Icons/ArrowRight";
 
 const STYLES = {
-  section: "mx-18.75 mt-4",
+  section: "mx-18.75 mt-4 flex flex-col",
   serviceButton: "cursor-pointer text-xl text-[#415E72]",
   navigationButton:
     "flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#EED6C4] bg-[#415E72]",
   arrowIcon: "size-4 text-[#EED6C4]",
   servicesContainer: "mt-5 flex justify-center space-x-4",
   cardsContainer: "flex items-center justify-center gap-8.75 p-4",
+  button:
+    "flex w-fit cursor-pointer items-center justify-center gap-2 self-center bg-[#415E72]",
 };
 export const ListServicesSection = () => {
   const services = [
@@ -69,6 +72,9 @@ export const ListServicesSection = () => {
           <ArrowRight className={STYLES.arrowIcon} />
         </button>
       </div>
+      <Button className={STYLES.button}>
+        More <ArrowRight className="text-[#EED6C4]" />
+      </Button>
     </section>
   );
 };

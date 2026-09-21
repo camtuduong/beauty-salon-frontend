@@ -1,5 +1,5 @@
 import { LayoutHeroSection } from "@/src/components/layout/LayoutHeroSection";
-import Img from "next/image";
+import Image from "next/image";
 import { Button } from "@/src/components/Button";
 import { ArrowRight } from "@/src/components/Icons/ArrowRight";
 
@@ -15,7 +15,7 @@ export const HeroSection = () => {
   return (
     <LayoutHeroSection>
       <div className={STYLES.container}>
-        <Img
+        <Image
           src="/img-hero-section.png"
           alt="Beauty Salon Hero Section Image"
           fill={true}
