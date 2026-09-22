@@ -1,16 +1,21 @@
 import { Button } from "@/src/components/Button";
 import { Card } from "@/src/components/Card";
-import { ArrowLeft } from "@/src/components/Icons/ArrowLeft";
 import { ArrowRight } from "@/src/components/Icons/ArrowRight";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/src/components/ui/carousel";
 
 const STYLES = {
-  section: "mx-18.75 mt-4 flex flex-col",
+  section: "mx-4 mt-4 flex flex-col md:mx-18.75",
   serviceButton: "text-salon-secondary cursor-pointer text-xl",
   navigationButton:
-    "border-salon-border bg-salon-secondary flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border",
-  arrowIcon: "text-salon-border size-4",
+    "border-salon-border text-white bg-salon-primary hover:bg-salon-primary-dark hover:text-salon-secondary flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border",
   servicesContainer: "mt-5 flex justify-center space-x-4",
-  cardsContainer: "flex items-center justify-center gap-8.75 p-4",
+  carousel: "w-full self-center py-4 md:max-w-[608px] lg:max-w-[888px]",
   button:
     "bg-salon-secondary flex w-fit cursor-pointer items-center justify-center gap-2 self-center",
 };
@@ -43,6 +48,26 @@ export const ListServicesSection = () => {
       description: "This is a description of the sample service.",
       code: "AED 299",
     },
+
+    {
+      url: "/Image.png",
+      title: "Sample Service",
+      description: "This is a description of the sample service.",
+      code: "AED 298",
+    },
+
+    {
+      url: "/Image.png",
+      title: "Sample Service",
+      description: "This is a description of the sample service.",
+      code: "AED 297",
+    },
+    {
+      url: "/Image.png",
+      title: "Sample Service",
+      description: "This is a description of the sample service.",
+      code: "AED 296",
+    },
   ];
 
   return (
@@ -54,24 +79,34 @@ export const ListServicesSection = () => {
           </button>
         ))}
       </div>
-      <div className={STYLES.cardsContainer}>
-        <button className={STYLES.navigationButton}>
-          <ArrowLeft className={STYLES.arrowIcon} />
-        </button>
-
-        {cards.map((card, index) => (
-          <Card
-            key={index}
-            url={card.url}
-            title={card.title}
-            description={card.description}
-            code={card.code}
-          />
-        ))}
-        <button className={STYLES.navigationButton}>
-          <ArrowRight className={STYLES.arrowIcon} />
-        </button>
-      </div>
+      <Carousel
+        opts={{
+          align: "start",
+        }}
+        className={STYLES.carousel}
+      >
+        <CarouselContent className="md:-ml-6">
+          {cards.map((card, index) => (
+            <CarouselItem
+              key={index}
+              className="flex basis-full justify-center pl-0 md:basis-76 md:justify-start md:pl-6"
+            >
+              <Card
+                url={card.url}
+                title={card.title}
+                description={card.description}
+                code={card.code}
+              />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          className={`${STYLES.navigationButton} left-2 md:-left-12`}
+        />
+        <CarouselNext
+          className={`${STYLES.navigationButton} right-2 md:-right-12`}
+        />
+      </Carousel>
       <Button className={STYLES.button}>
         More <ArrowRight className="text-salon-border" />
       </Button>

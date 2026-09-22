@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const STYLES = {
   container:
-    "border-salon-border flex h-99 w-70 flex-col gap-2.5 rounded-[20px] border bg-white p-5",
+    "border-salon-border flex h-99 w-70 flex-col gap-2.5 rounded-[20px] border bg-white p-5 select-none",
   button:
     "border-salon-secondary text-salon-secondary hover:bg-salon-secondary mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-full border bg-transparent px-4 py-2 transition-colors duration-300 hover:text-white",
   title: "text-salon-heading text-xl font-semibold",

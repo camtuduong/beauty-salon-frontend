@@ -11,7 +11,7 @@ import { ContactFormInputs } from "@/src/lib/types";
 const STYLES = {
   section: "mx-30 mt-15.25 flex flex-col gap-5",
   form: "border-salon-secondary flex w-1/2 flex-col gap-2 border-r-2 pr-6",
-  cardContainer: "flex flex-col gap-6.5",
+  cardContainer: "flex flex-col gap-6.5 justify-center",
   cardInfo:
     "border-salon-primary/40 flex max-w-[320px] flex-col gap-3 rounded-lg border bg-white p-4 shadow-xl",
 };
@@ -52,7 +52,7 @@ export const ContactSection = () => {
       />
       <div className="my-12 flex justify-around">
         <form className={STYLES.form} onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="mb-4 text-[24px] leading-[150%] font-semibold">
+          <h2 className="text-[24px] leading-[150%] font-semibold">
             Contact Form
           </h2>
           <InputField
@@ -86,13 +86,14 @@ export const ContactSection = () => {
               className="border-salon-secondary bg-salon-primary/40 focus:ring-salon-secondary rounded p-2 font-bold text-white focus:ring-2 focus:outline-none"
               rows={4}
               maxLength={500}
+              style={{ resize: "none" }}
             />
             {errors.message?.message && (
               <p className="text-sm text-red-500">{errors.message?.message}</p>
             )}
           </div>
 
-          <Button className="self-end" type="submit">
+          <Button className="mt-2 self-end" type="submit">
             Send to Us
           </Button>
         </form>
