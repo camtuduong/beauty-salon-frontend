@@ -44,7 +44,7 @@ export const ContactSection = () => {
   });
   const onSubmit = () => {};
   return (
-    <section className={STYLES.section}>
+    <section id="contact" className={STYLES.section}>
       <TitleSection
         title="CONTACT US"
         subtitle="Get In Touch"

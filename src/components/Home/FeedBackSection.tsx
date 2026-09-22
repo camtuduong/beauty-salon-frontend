@@ -58,7 +58,7 @@ export const FeedBackSection = () => {
     },
   ];
   return (
-    <section className="mx-4 my-20 md:ml-45">
+    <section id="feedback" className="mx-4 my-20 md:ml-45">
       <div className="flex w-full flex-col items-start gap-2.75 md:w-1/2">
         <Comma className="text-salon-secondary" />
         <h1 className="font-playfair text-salon-heading text-5xl font-semibold">

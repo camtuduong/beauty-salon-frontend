@@ -3,7 +3,7 @@ import { TitleSection } from "@/src/components/TitleSection";
 
 export const OurServicesSection = () => {
   return (
-    <section className="my-11 px-4">
+    <section id="services" className="my-11 px-4">
       <TitleSection
         title="SERVICES"
         subtitle="Our Service"
