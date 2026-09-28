@@ -11,7 +11,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 5,
@@ -19,7 +19,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 4,
@@ -27,7 +27,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 4,
@@ -35,7 +35,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 3,
@@ -43,7 +43,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 5,
@@ -51,7 +51,7 @@ export const FeedBackSection = () => {
     {
       testimonial:
         "Legally Always has been an invaluable partner in navigating the complexities of business law.",
-      avatarSrc: "path/to/avatar.jpg",
+      avatarSrc: "Image.png",
       avatarFallback: "LA",
       userName: "Legal Always",
       starRating: 5,
