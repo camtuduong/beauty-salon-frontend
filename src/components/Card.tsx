@@ -1,4 +1,5 @@
 import { ArrowRight } from "@/src/components/Icons/ArrowRight";
+import { Skeleton } from "@/src/components/ui/skeleton";
 import Image from "next/image";
 
 const STYLES = {
@@ -18,10 +19,31 @@ type Props = {
   code: string;
 };
 
+export function SkeletonCard() {
+  return (
+    <div className={STYLES.container}>
+      <Skeleton className="h-48 w-full rounded-none" />
+      <Skeleton className="h-6 w-3/4" />
+      <Skeleton className="h-5 w-full" />
+      <div className="flex justify-between">
+        <Skeleton className="h-5 w-12" />
+        <Skeleton className="h-5 w-16" />
+      </div>
+      <Skeleton className="mt-2 h-10 w-full rounded-full" />
+    </div>
+  );
+}
+
 export const Card = ({ url, title, description, code }: Props) => {
   return (
     <div className={STYLES.container}>
-      <Image src={url} alt="Card image" width={300} height={200} />
+      <Image
+        src={url || "/placeholder.jpg"}
+        alt="Card image"
+        width={300}
+        height={200}
+        className="h-48 w-full object-cover"
+      />
       <h3 className={STYLES.title}>{title}</h3>
       <p className={STYLES.description}>{description}</p>
       <div className="flex justify-between">

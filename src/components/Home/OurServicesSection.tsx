@@ -5,70 +5,31 @@ import { ListServicesSection } from "@/src/components/Home/ListServicesSection";
 import { ArrowRight } from "@/src/components/Icons/ArrowRight";
 import { TitleSection } from "@/src/components/TitleSection";
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { ServiceCategory } from "@/src/types/service";
+import { useGetServicesByCategory } from "@/src/hooks/queries/useGetServicesByCategory";
+import { useAddDefaultCategory } from "@/src/hooks/useAddDefaultCategory";
 
 const STYLES = {
   button:
     "bg-salon-secondary flex w-fit cursor-pointer items-center justify-center gap-2 self-center",
 };
 
-const serviceCategories = [
-  { value: "hair", name: "Hair" },
-  { value: "nails", name: "Nails" },
-  { value: "facial", name: "Facial" },
-  { value: "makeup", name: "Makeup" },
-  { value: "lashes", name: "Lashes" },
-];
+type Props = {
+  serviceCategories: ServiceCategory[];
+  isCategoriesLoading: boolean;
+};
 
-const services = [
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 299",
-  },
+export const OurServicesSection = ({
+  serviceCategories,
+  isCategoriesLoading,
+}: Props) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 299",
-  },
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 299",
-  },
+  const { data: servicesByCategory, isLoading: servicesByCategoryLoading } =
+    useGetServicesByCategory(selectedCategory);
 
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 298",
-  },
-
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 297",
-  },
-  {
-    url: "/Image.png",
-    title: "Sample Service",
-    description: "This is a description of the sample service.",
-    code: "AED 296",
-  },
-];
-
-export const OurServicesSection = () => {
-  const [isActiveCategory, setIsActiveCategory] = useState(
-    serviceCategories[0].value,
-  );
-
-  const handleCategoryClick = (value: string) => {
-    setIsActiveCategory(value);
+  const handleCategoryClick = (slug: string) => {
+    setSelectedCategory(slug);
   };
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -77,6 +38,8 @@ export const OurServicesSection = () => {
     setIsExpanded(!isExpanded);
   };
 
+  const categories = useAddDefaultCategory(serviceCategories);
+
   return (
     <section id="services" className="my-11 flex flex-col px-4">
       <TitleSection
@@ -84,20 +47,23 @@ export const OurServicesSection = () => {
         subtitle="Our Service"
         description="Explore the wide range of beauty services we provide to help you look and feel your best."
       />
-      <AnimatePresence>
-        <ListServicesSection
-          services={services}
-          isExpanded={isExpanded}
-          serviceCategories={serviceCategories}
-          isActiveCategory={isActiveCategory}
-          onCategoryClick={handleCategoryClick}
-        />
-      </AnimatePresence>
 
-      <Button className={STYLES.button} onClick={handleToggleExpand}>
-        {isExpanded ? "Less" : "More"}{" "}
-        <ArrowRight className="text-salon-border" />
-      </Button>
+      <ListServicesSection
+        services={servicesByCategory}
+        isExpanded={isExpanded}
+        serviceCategories={categories}
+        isCategoriesLoading={isCategoriesLoading}
+        isActiveCategory={selectedCategory}
+        onCategoryClick={handleCategoryClick}
+        isLoading={servicesByCategoryLoading}
+      />
+
+      {!servicesByCategoryLoading && (
+        <Button className={STYLES.button} onClick={handleToggleExpand}>
+          {isExpanded ? "Less" : "More"}{" "}
+          <ArrowRight className="text-salon-border" />
+        </Button>
+      )}
     </section>
   );
 };

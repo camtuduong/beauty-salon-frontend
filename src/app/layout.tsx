@@ -3,6 +3,7 @@ import "./globals.css";
 import SmoothScroll from "@/src/components/motion/SmothScroll";
 import { Header } from "@/src/components/layout/Header";
 import { Footer } from "@/src/components/layout/Footer";
+import Providers from "@/src/providers/QueryClientProvider";
 
 export const metadata: Metadata = {
   title: "Natural Touch",
@@ -15,11 +16,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className="font-intern h-full antialiased">
       <body className="relative flex min-h-full flex-col overflow-x-hidden">
-        <Header />
-        <main className="flex-1">
-          <SmoothScroll>{children}</SmoothScroll>
-        </main>
-        <Footer />
+        <Providers>
+          <Header />
+          <main className="flex-1">
+            <SmoothScroll>{children}</SmoothScroll>
+          </main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

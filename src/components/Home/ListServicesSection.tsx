@@ -1,13 +1,7 @@
-import { Card } from "@/src/components/Card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/src/components/ui/carousel";
+import { ListServices } from "@/src/components/Home/ListServices";
+import { Skeleton } from "@/src/components/ui/skeleton";
 import { cn } from "@/src/lib/utils";
-import { motion } from "framer-motion";
+import { ServiceCategory, Service } from "@/src/types/service";
 
 const STYLES = {
   section: "mx-4 mt-4 flex flex-col md:mx-18.75",
@@ -21,100 +15,62 @@ const STYLES = {
 };
 
 type Props = {
-  services: {
-    url: string;
-    title: string;
-    description: string;
-    code: string;
-  }[];
+  services: Service[];
+  isLoading: boolean;
+  isCategoriesLoading: boolean;
   isExpanded: boolean;
-  serviceCategories: {
-    value: string;
-    name: string;
-  }[];
+  serviceCategories: ServiceCategory[];
   isActiveCategory: string;
   onCategoryClick: (value: string) => void;
 };
 
 export const ListServicesSection = ({
   services,
+  isLoading,
+  isCategoriesLoading,
   isExpanded,
   serviceCategories,
   isActiveCategory,
   onCategoryClick,
 }: Props) => {
-  const renderServices = () => {
-    switch (isExpanded) {
-      case false:
-        return (
-          <Carousel
-            opts={{
-              align: "start",
-            }}
-            className={STYLES.carousel}
-          >
-            <CarouselContent className="md:-ml-6">
-              {services.slice(0, 5).map((card, index) => (
-                <CarouselItem
-                  key={index}
-                  className="flex basis-full justify-center pl-0 md:basis-76 md:justify-start md:pl-6"
-                >
-                  <Card
-                    url={card.url}
-                    title={card.title}
-                    description={card.description}
-                    code={card.code}
-                  />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious
-              className={`${STYLES.navigationButton} left-2 md:-left-12`}
-            />
-            <CarouselNext
-              className={`${STYLES.navigationButton} right-2 md:-right-12`}
-            />
-          </Carousel>
-        );
-      case true:
-        return (
-          <div className="grid grid-cols-[repeat(4,280px)] justify-center gap-4 py-4">
-            {services.map((card, index) => (
-              <Card
-                key={index}
-                url={card.url}
-                title={card.title}
-                description={card.description}
-                code={card.code}
-              />
-            ))}
-          </div>
-        );
-    }
-  };
+  if (
+    !isLoading &&
+    !isCategoriesLoading &&
+    (!services || services.length === 0)
+  ) {
+    return null;
+  }
 
   return (
-    <motion.section
-      className={STYLES.section}
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0 }}
-    >
+    <section className={STYLES.section}>
       <div className={STYLES.servicesContainer}>
-        {serviceCategories.map((service) => (
-          <button
-            className={cn(
-              STYLES.serviceButton,
-              isActiveCategory === service.value && STYLES.activeServiceButton,
-            )}
-            key={service.value}
-            onClick={() => onCategoryClick(service.value)}
-          >
-            {service.name}
-          </button>
-        ))}
+        {isCategoriesLoading
+          ? Array.from({ length: 4 }, (_, index) => (
+              <Skeleton
+                className="h-12 w-24 shrink-0 rounded-t-md"
+                key={index}
+              />
+            ))
+          : serviceCategories.map((service) => (
+              <button
+                className={cn(
+                  STYLES.serviceButton,
+                  isActiveCategory === service.slug &&
+                    STYLES.activeServiceButton,
+                )}
+                key={service.id}
+                onClick={() => onCategoryClick(service.slug)}
+              >
+                {service.name}
+              </button>
+            ))}
       </div>
-      {renderServices()}
-    </motion.section>
+      <ListServices
+        services={services ?? []}
+        isLoading={isLoading}
+        isExpanded={isExpanded}
+        STYLES={STYLES}
+      />
+    </section>
   );
 };
