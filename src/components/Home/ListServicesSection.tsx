@@ -1,115 +1,76 @@
-import { Button } from "@/src/components/Button";
-import { Card } from "@/src/components/Card";
-import { ArrowRight } from "@/src/components/Icons/ArrowRight";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/src/components/ui/carousel";
+import { ListServices } from "@/src/components/Home/ListServices";
+import { Skeleton } from "@/src/components/ui/skeleton";
+import { cn } from "@/src/lib/utils";
+import { ServiceCategory, Service } from "@/src/types/service";
 
 const STYLES = {
   section: "mx-4 mt-4 flex flex-col md:mx-18.75",
-  serviceButton: "text-salon-secondary cursor-pointer text-xl",
+  serviceButton: "text-salon-secondary cursor-pointer text-xl p-[10px]",
   navigationButton:
     "border-salon-border text-white bg-salon-primary hover:bg-salon-primary-dark hover:text-salon-secondary flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border",
-  servicesContainer: "mt-5 flex justify-center space-x-4",
+  servicesContainer: "self-center flex justify-center gap-[20px]",
   carousel: "w-full self-center py-4 md:max-w-[608px] lg:max-w-[888px]",
-  button:
-    "bg-salon-secondary flex w-fit cursor-pointer items-center justify-center gap-2 self-center",
+  activeServiceButton:
+    "bg-white border-b-2 border-salon-secondary rounded-t-md",
 };
-export const ListServicesSection = () => {
-  const services = [
-    { value: "hair", name: "Hair" },
-    { value: "nails", name: "Nails" },
-    { value: "facial", name: "Facial" },
-    { value: "makeup", name: "Makeup" },
-    { value: "lashes", name: "Lashes" },
-  ];
 
-  const cards = [
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 299",
-    },
+type Props = {
+  services: Service[];
+  isLoading: boolean;
+  isCategoriesLoading: boolean;
+  isExpanded: boolean;
+  serviceCategories: ServiceCategory[];
+  isActiveCategory: string;
+  onCategoryClick: (value: string) => void;
+};
 
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 299",
-    },
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 299",
-    },
-
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 298",
-    },
-
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 297",
-    },
-    {
-      url: "/Image.png",
-      title: "Sample Service",
-      description: "This is a description of the sample service.",
-      code: "AED 296",
-    },
-  ];
+export const ListServicesSection = ({
+  services,
+  isLoading,
+  isCategoriesLoading,
+  isExpanded,
+  serviceCategories,
+  isActiveCategory,
+  onCategoryClick,
+}: Props) => {
+  if (
+    !isLoading &&
+    !isCategoriesLoading &&
+    (!services || services.length === 0)
+  ) {
+    return null;
+  }
 
   return (
     <section className={STYLES.section}>
       <div className={STYLES.servicesContainer}>
-        {services.map((service) => (
-          <button className={STYLES.serviceButton} key={service.value}>
-            {service.name}
-          </button>
-        ))}
-      </div>
-      <Carousel
-        opts={{
-          align: "start",
-        }}
-        className={STYLES.carousel}
-      >
-        <CarouselContent className="md:-ml-6">
-          {cards.map((card, index) => (
-            <CarouselItem
-              key={index}
-              className="flex basis-full justify-center pl-0 md:basis-76 md:justify-start md:pl-6"
-            >
-              <Card
-                url={card.url}
-                title={card.title}
-                description={card.description}
-                code={card.code}
+        {isCategoriesLoading
+          ? Array.from({ length: 4 }, (_, index) => (
+              <Skeleton
+                className="h-12 w-24 shrink-0 rounded-t-md"
+                key={index}
               />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious
-          className={`${STYLES.navigationButton} left-2 md:-left-12`}
-        />
-        <CarouselNext
-          className={`${STYLES.navigationButton} right-2 md:-right-12`}
-        />
-      </Carousel>
-      <Button className={STYLES.button}>
-        More <ArrowRight className="text-salon-border" />
-      </Button>
+            ))
+          : serviceCategories.map((service) => (
+              <button
+                className={cn(
+                  STYLES.serviceButton,
+                  isActiveCategory === service.slug &&
+                    STYLES.activeServiceButton,
+                )}
+                key={service.id}
+                onClick={() => onCategoryClick(service.slug)}
+              >
+                {service.name}
+              </button>
+            ))}
+      </div>
+      <ListServices
+        services={services ?? []}
+        isLoading={isLoading}
+        isExpanded={isExpanded}
+        STYLES={STYLES}
+      />
     </section>
   );
 };
